@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "121612802792",
+    "project_id": "snapchatclone-49f81",
+    "storage_bucket": "snapchatclone-49f81.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:121612802792:android:a7e3692ab346a92da3875d",
+        "android_client_info": {
+          "package_name": "com.example.snapchatclone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "121612802792-8qstqeq1e915vmjkoa7femkjuttkranj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAb31McFRBO2oRPhMs3r1W0Y2QzAwgEgw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "121612802792-8qstqeq1e915vmjkoa7femkjuttkranj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
