@@ -23,6 +23,8 @@ import java.util.*
 class createSnapActivity : AppCompatActivity() {
 
     val imageName=UUID.randomUUID().toString()+".jpg"
+    var flag:Boolean=true
+    var imageFlag:Boolean=false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_snap)
@@ -32,6 +34,7 @@ class createSnapActivity : AppCompatActivity() {
 
         val intent=Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         startActivityForResult(intent,1)
+        imageFlag=true
     }
 
     fun chooseImageClicked(view: View){
@@ -48,44 +51,52 @@ class createSnapActivity : AppCompatActivity() {
 
     fun nextClicked(view:View){
 
-        imageView.isDrawingCacheEnabled = true
-        imageView.buildDrawingCache()
-        val bitmap = (imageView.drawable as BitmapDrawable).bitmap
-        val baos = ByteArrayOutputStream()
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
-        val data = baos.toByteArray()
+        checkMessageText()
+
+        if(flag==true && imageFlag==true) {
+
+            imageView.isDrawingCacheEnabled = true
+            imageView.buildDrawingCache()
+            val bitmap = (imageView.drawable as BitmapDrawable).bitmap
+            val baos = ByteArrayOutputStream()
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+            val data = baos.toByteArray()
 
 
+            var ref = FirebaseStorage.getInstance().getReference().child("images").child(imageName)
+            val uploadTask = ref.putBytes(data)
+            val urlTask = uploadTask.continueWithTask { task ->
+                if (!task.isSuccessful) {
+                    task.exception?.let {
+                        throw it
+                    }
+                }
+                ref.downloadUrl
 
-        var ref =    FirebaseStorage.getInstance().getReference().child("images").child(imageName)
-       val uploadTask= ref.putBytes(data)
-        val urlTask = uploadTask.continueWithTask { task ->
-            if (!task.isSuccessful) {
-                task.exception?.let {
-                    throw it
+            }.addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val downloadUri = task.result.toString()
+
+
+                    val intent = Intent(this, MemberChooseActivity::class.java)
+                    intent.putExtra("ImageName", imageName)
+
+                    intent.putExtra("ImageURL", downloadUri)
+                    intent.putExtra("Message", message.text.toString())
+                    startActivity(intent)
+
+
+                } else {
+
+                    Toast.makeText(this, "Upload Failed", Toast.LENGTH_LONG).show()
+
+                    // ...
                 }
             }
-            ref.downloadUrl
-
-        }.addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                val downloadUri = task.result.toString()
-
-
-                val intent=Intent(this,MemberChooseActivity::class.java)
-                intent.putExtra("ImageName",imageName)
-
-                intent.putExtra("ImageURL",downloadUri)
-                intent.putExtra("Message",message.text.toString())
-                startActivity(intent)
-
-
-            } else {
-
-                Toast.makeText(this,"Upload Failed",Toast.LENGTH_LONG).show()
-
-                // ...
-            }
+        }
+        else if(imageFlag==false){
+            Toast.makeText(this,"Please first select the appropriate image by pressing above button",Toast.LENGTH_LONG).show()
+            return
         }
 
 
@@ -96,6 +107,22 @@ class createSnapActivity : AppCompatActivity() {
 
 
         }
+
+    fun checkMessageText(){
+
+        if(message.text.toString().isEmpty()){
+
+            message.setError("Please First enter the message")
+            message.requestFocus()
+            flag=false
+            return
+
+        }
+
+
+        flag=true
+        return
+    }
 
 
 

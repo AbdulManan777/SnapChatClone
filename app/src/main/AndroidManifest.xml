@@ -13,6 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SnapChatClone">
         <activity
+            android:name=".ForgotPasswordActivity"
+            android:exported="true" />
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="true" />
+        <activity
             android:name=".viewSnapActivity"
             android:exported="true" />
         <activity

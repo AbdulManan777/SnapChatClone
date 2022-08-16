@@ -4,8 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/shahzaib laptop/AndroidStudioProjects/SnapChatClone/app/src/main/res/layout/activity_create_snap.xml" value="0.20989583333333334" />
+        <entry key="..\:/Users/shahzaib laptop/AndroidStudioProjects/SnapChatClone/app/src/main/res/layout/activity_forgot_password.xml" value="0.19791666666666666" />
         <entry key="..\:/Users/shahzaib laptop/AndroidStudioProjects/SnapChatClone/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/shahzaib laptop/AndroidStudioProjects/SnapChatClone/app/src/main/res/layout/activity_member_choose.xml" value="0.25025641025641027" />
+        <entry key="..\:/Users/shahzaib laptop/AndroidStudioProjects/SnapChatClone/app/src/main/res/layout/activity_register.xml" value="0.23229166666666667" />
         <entry key="..\:/Users/shahzaib laptop/AndroidStudioProjects/SnapChatClone/app/src/main/res/layout/activity_snaps.xml" value="0.2046875" />
         <entry key="..\:/Users/shahzaib laptop/AndroidStudioProjects/SnapChatClone/app/src/main/res/layout/activity_view_snap.xml" value="0.22685185185185186" />
         <entry key="..\:/Users/shahzaib laptop/AndroidStudioProjects/SnapChatClone/app/src/main/res/layout/items_recycler_view.xml" value="0.25025641025641027" />
